@@ -1,0 +1,12 @@
+"platform_procedure"
+{
+	"base"      "base"
+    "title"     "Platform Procedure"
+    "menusystem"	"1"
+
+    "author_name"   "Phineas and Ferb"
+    "author_email"  "n/a"
+    "author_url"    ""
+    "workshopid"	""
+    "maps"		"^platform_"
+}
