@@ -34,7 +34,7 @@ Platform_Manager["Structures"][Platform_Name] = { -- The platform ID.
 			function(Base)
 				return Base:GetPos() + Vector( 169, -111, 154)
 			end,
-			Angle(0,33,0),
+			Angle(0,-33,0),
 			Color(72,72,72),
 			"models/debug/debugwhite",
 			"tile",
@@ -64,7 +64,7 @@ Platform_Manager["Structures"][Platform_Name] = { -- The platform ID.
 			function(Base)
 				return Base:GetPos() + Vector( -95, -169, 153)
 			end,
-			Angle(0,111,0),
+			Angle(0,-111,0),
 			Color(72,72,72),
 			"models/debug/debugwhite",
 			"tile",
@@ -94,7 +94,7 @@ Platform_Manager["Structures"][Platform_Name] = { -- The platform ID.
 			function(Base)
 				return Base:GetPos() + Vector( 68, 142, 153)
 			end,
-			Angle(0,289,0),
+			Angle(0,-289,0),
 			Color(72,72,72),
 			"models/debug/debugwhite",
 			"tile",
@@ -124,7 +124,7 @@ Platform_Manager["Structures"][Platform_Name] = { -- The platform ID.
 			function(Base)
 				return Base:GetPos() + Vector( -204, 95, 153)
 			end,
-			Angle(0,202,0),
+			Angle(0,-202,0),
 			Color(72,72,72),
 			"models/debug/debugwhite",
 			"tile",
@@ -540,8 +540,6 @@ Platform_Manager["Types"][Platform_Name] = {
 									
 								end
 
-								PP_ActionEffect(self,"pp_impact",1)
-
 							end
 
 							Platform["Health_Cost"] = Platform["Health_Cost"] + Platform["Health_Cost_Add"]
@@ -597,23 +595,11 @@ Platform_Manager["Types"][Platform_Name] = {
 			    DisplayAngle:RotateAroundAxis(DisplayAngle:Up(), 90)
 			    DisplayAngle:RotateAroundAxis(DisplayAngle:Forward(), 90)
 
-			    local dlight = DynamicLight( LocalPlayer():EntIndex() )
-				if ( dlight ) then
-					dlight.pos = Pos
-					dlight.r = 255
-					dlight.g = 255
-					dlight.b = 255
-					dlight.brightness = 2
-					dlight.Decay = 1000
-					dlight.Size = 256
-					dlight.DieTime = CurTime() + 1
-				end
-
 				cam.Start3D2D(Pos , DisplayAngle, 0.1)
 					local Display_Text = "Use The Skull To Activate The Ritual"
 
 			        PP_DrawShadowedTxt(Display_Text,"PP_Regular",2,2,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,PP["Color_Pallete"]["Tower_Health"])
-			        PP_DrawShadowedTxt("Costs "..Platform:GetNW2Int("PP_RitualCost", Platform["Health_Cost"]).." Health","PP_Regular",2,70,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,PP["Color_Pallete"]["Tower_Health"])
+			        PP_DrawShadowedTxt("Costs "..Platform:GetNW2Int("PP_RitualCost", Platform["Health_Cost"]).." Health","PP_Regular",2,ScreenScale(30),TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,PP["Color_Pallete"]["Tower_Health"])
 
 			    cam.End3D2D()
 

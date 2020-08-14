@@ -60,7 +60,7 @@ net.Receive("PP_OpenInventory", function(len, ply)
 	InventoryLayout["Frame"]:SetTitle("")						-- Set the title to nothing
 	InventoryLayout["Frame"]:ShowCloseButton(false)
 	InventoryLayout["Frame"]:SetDraggable(false)				-- Makes it so you carnt drag it
-	InventoryLayout["Frame"]:DockPadding( ScrH()*0.10, ScrH()*0.16, 0, ScrH()*0.15 )
+	InventoryLayout["Frame"]:DockPadding( ScrH()*0.05, ScrH()*0.25, 0, ScrH()*0.15 )
 	gui.EnableScreenClicker(true)
 
 	InventoryLayout["Frame"].Paint = function(w,h)
@@ -129,7 +129,7 @@ net.Receive("PP_OpenInventory", function(len, ply)
 
 	local function AddInventoryItem( key, value )
 			local Item_Panel = vgui.Create("DPanel")
-			Item_Panel["Size"] = (InventoryLayout["List"]:GetWide() / PP["Inventory_Row_x"] - 6) -- yikes
+			Item_Panel["Size"] = (InventoryLayout["List"]:GetWide() / 5 - 6) -- yikes
 			Item_Panel:SetSize(Item_Panel["Size"],Item_Panel["Size"])
 
 			function Item_Panel:Paint(w,h)
@@ -211,10 +211,6 @@ net.Receive("PP_OpenInventory", function(len, ply)
 	end
 	AddEmptyInventorySlot()]]
 
-
-	
-
-
 	local function CreateWeaponBar()
 
 		if IsValid(InventoryLayout["WeaponList"]) then
@@ -253,13 +249,13 @@ net.Receive("PP_OpenInventory", function(len, ply)
 					--CursrorSaveAndRestore( timer.Simple(0.1, function() CreateWeaponBar() end ) )
 					InventoryLayout["Frame"]:Close()
 					
-					--[[local ms_pos_x, ms_pos_y = input.GetCursorPos()
+					local ms_pos_x, ms_pos_y = input.GetCursorPos()
 					timer.Simple(0.1, function()
 						-- Nothing to validate here.
 						CreateWeaponBar()
-						gui.EnableScreenClicker(true)
-						gui.SetMousePos( ms_pos_x, ms_pos_y )
-					end )]]
+						--gui.EnableScreenClicker(true)
+						--gui.SetMousePos( ms_pos_x, ms_pos_y )
+					end )
 				end
 			end
 		end
@@ -285,6 +281,7 @@ net.Receive("PP_OpenInventory", function(len, ply)
 					Equip_Panel_Model:SetAnimated( false )
 					Equip_Panel_Model:SetTooltip( InventoryItemName( value2:GetClass() ) )
 
+					if not IsValid(Equip_Panel_Model.Entity) then return end
 					Equip_Panel_Model.Entity:SetMaterial( PP["Weapon_Material"] )
 					Equip_Panel_Model:SetColor( value2:GetColor() )
 

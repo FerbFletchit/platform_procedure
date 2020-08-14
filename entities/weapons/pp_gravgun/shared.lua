@@ -1,123 +1,86 @@
-local soundData = {
-    name                = "Weapon_shell.Magin" ,
-    channel     = CHAN_AUTO,
-    volume              = 1,
-    soundlevel  = 75,
-    pitchstart  = 100,
-    pitchend    = 100,
-    sound               = "pp_weapons/loadclip.wav"
-}
-sound.Add(soundData)
-local soundData = {
-    name                = "Weapon_pump.Magin" ,
-    channel     = CHAN_AUTO,
-    volume              = 1,
-    soundlevel  = 75,
-    pitchstart  = 100,
-    pitchend    = 100,
-    sound               = "pp_weapons/pump.wav"
-}
-sound.Add(soundData)
+SWEP.Author = "Phineas & Ferb"
+SWEP.Purpose = "It picks stuff up, and puts it down."
+SWEP.Instructions = "Clicky."
+ 
+SWEP.Category = "Platform Procedure"
+ 
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true 
 
-if ( SERVER ) then
-	AddCSLuaFile( "shared.lua" )
-end
+------------------------------------------------
+-- Constrcutor Code
+------------------------------------------------
 
-if ( CLIENT ) then
-	SWEP.PrintName		= "Shotgun"
-	SWEP.Author		    = "Phineas & Ferb & Jenssons"
-	SWEP.Purpose		= "Weapons in hit gamemode PP"
-	SWEP.ViewModelFOV	= "70"
-	SWEP.Instructions	= "Point, Click"
-	SWEP.Slot				= 4
-	SWEP.SlotPos			= 4
-end
+SWEP.ViewModelFOV = 57
 
-SWEP.Category = "PP" 
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= true
+SWEP.HoldType = "physgun"
 
-
--- PP CODE --
 SWEP.ViewModelFlip = false
-
-SWEP.HoldType = "shotgun"
-
-SWEP.ViewModelFOV = 70
 
 SWEP.UseHands = true
 
-SWEP.ViewModel = "models/weapons/v_shotgun.mdl"
-SWEP.WorldModel = "models/aceofspades/weapons/shotgun2.mdl"
+SWEP.ViewModel = "models/weapons/v_vortbeamvm.mdl"
+SWEP.WorldModel = "models/aceofspades/custom_objects/gravgun.mdl"
 
-SWEP.ShowViewModel = false
+SWEP.ShowViewModel = true
 SWEP.ShowWorldModel = false
 
-SWEP.VElements = {
-	["PP_Shotgun_V"] = { type = "Model", model = "models/aceofspades/weapons/shotgun2.mdl", bone = "ValveBiped.Gun", rel = "", pos = Vector(0, 0.518, -5.715), angle = Angle(90, 0, -90), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
-}
+SWEP.IronSightsPos = Vector(2.21, 2.411, -2.613)
+SWEP.IronSightsAng = Vector(0, 0, 0)
 
 SWEP.ViewModelBoneMods = {
-	["ValveBiped.Bip01_L_UpperArm"] = { scale = Vector(0.6, 0.5, 0.794), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) },
-	["ValveBiped.Gun"] = { scale = Vector(0.009, 0.009, 0.009), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) }
+	["ValveBiped.Bip01_L_UpperArm"] = { scale = Vector(0.4, 0.4, 0.4), pos = Vector(-6.112, 0, -5.742), angle = Angle(0, 0, 0) },
+	["ValveBiped.Bip01_R_Forearm"] = { scale = Vector(0.2, 0.2, 0.2), pos = Vector(-3.889, 5.369, 0.555), angle = Angle(0, 0, 38.888) },
+	["ValveBiped.Bip01_L_Hand"] = { scale = Vector(1, 1, 1), pos = Vector(0, 0, 0), angle = Angle(1.11, 10, 47.777) }
+}
+
+SWEP.VElements = {
+	["v_gravitygun"] = { type = "Model", model = "models/aceofspades/custom_objects/gravgun.mdl", bone = "ValveBiped.Bip01_L_Hand", rel = "", pos = Vector(4.675, 2.596, 4.675), angle = Angle(0, -15.195, -90), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
 
 SWEP.WElements = {
-	["PP_Shotgun_V"] = { type = "Model", model = "models/aceofspades/weapons/shotgun2.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(9.869, 1.557, -2.597), angle = Angle(-12.858, 0, 180), size = Vector(1.5, 1.5, 1.5), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+	["v_gravitygun"] = { type = "Model", model = "models/aceofspades/custom_objects/gravgun.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(11.947, 3.635, -3.636), angle = Angle(-1.17, 0, -167.144), size = Vector(1.2, 1.2, 1.2), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
 
----------------------------
+------------------------------------------------
+------------------------------------------------
 
--------------Primary Fire Attributes----------------------------------------
-SWEP.Primary.Recoil			= PP["Weapon_Recoil"]
-SWEP.Primary.Damage			= PP["Shotgun_Base_Damage"]
-SWEP.Primary.Delay = PP["Shotgun_Base_Firerate"]
-SWEP.Primary.NumShots		= 5
-SWEP.Primary.Cone			= 0.085
 SWEP.Primary.ClipSize = -1
-SWEP.Primary.ClipMax = -1
+ 
 SWEP.Primary.DefaultClip = -1
-SWEP.Primary.Automatic   = true
-SWEP.Primary.Ammo        = "Buckshot"
-SWEP.Primary.TakeAmmo = 0
+ 
+SWEP.Primary.Automatic = false
+ 
+SWEP.Primary.Ammo = "none"
+ 
+SWEP.Secondary.ClipSize = -1
 
+SWEP.Secondary.DefaultClip = -1
 
--------------Secondary Fire Attributes----------------------------------------
-SWEP.Secondary.ClipSize		= -1
-SWEP.Secondary.DefaultClip	= -1
-SWEP.Secondary.Automatic	= false
-SWEP.Secondary.Ammo			= "none"
+SWEP.Secondary.Automatic = false
 
-SWEP.IronSightsPos = Vector (-6.9, -0.8637, 1.3)
-SWEP.IronSightsAng = Vector (-0.088, -0.1113, 0)
+SWEP.Secondary.Ammo = "none"
 
-SWEP.Primary.Sound = Sound( "pp_weapons/shotgunfire.mp3" )
-reload = Sound( "Weapon_Shotgun.Reload" )
-pump = Sound( "Weapon_Shotgun.Special1" )
-
-SWEP.IronSightsPos      = Vector( -8.5, 0, 0 )
-SWEP.IronSightsAng      = Vector( 2, 0.6, 0 )
-
-function SWEP:GetIronsights() return false end
-function SWEP:SetIronsights() end
-
-function SWEP:SetupDataTables()
-   self:DTVar("Bool", 0, "reloading")
-end
+------------------------------------------------
+------------------------------------------------
 
 function SWEP:Initialize()
 
 	// other initialize code goes here
 
 	timer.Simple(0.01, function()
+
 		if not IsValid(self.Weapon) or not IsValid(self) then return end
 
 		local Qual = PP_GetIngotByColor(self:GetColor())[2]["Swep_Multiplier"] or PP["Ingots"][1]["Swep_Multiplier"]
 
 		-- Make gun work code --
+		-- here we could instead of changing the gun material, make a light appear with that color.
 		for key, value in pairs(self.VElements) do
 			value["color"] = self:GetColor()
+
 			value["material"] = PP["Default_Material"]
+
 		end
 
 		for key, value in pairs(self.WElements) do
@@ -126,16 +89,15 @@ function SWEP:Initialize()
 		end
 		-------------------------
 		
-		self.Primary.Damage = self.Primary.Damage*Qual
-		self.Primary.Delay = self.Primary.Delay + ( self.Primary.Delay / Qual )
+		--self.Primary.Damage = self.Primary.Damage*Qual
+		--self.Primary.Delay = self.Primary.Delay + ( self.Primary.Delay / Qual )
 
 		self.Weapon:SetNW2Bool( "Ironsights", false )
 		self:SetHoldType( self.HoldType )
 	end )
 
-
 	if CLIENT then
-	
+
 		// Create a new table for every weapon instance
 		self.VElements = table.FullCopy( self.VElements )
 		self.WElements = table.FullCopy( self.WElements )
@@ -150,50 +112,21 @@ function SWEP:Initialize()
 			if IsValid(vm) then
 				self:ResetBonePositions(vm)
 				
+				// Init viewmodel visibility
+				if (self.ShowViewModel == nil or self.ShowViewModel) then
+					vm:SetColor(Color(255,255,255,255))
+				else
 					// we set the alpha to 1 instead of 0 because else ViewModelDrawn stops being called
 					vm:SetColor(Color(255,255,255,1))
 					// ^ stopped working in GMod 13 because you have to do Entity:SetRenderMode(1) for translucency to kick in
 					// however for some reason the view model resets to render mode 0 every frame so we just apply a debug material to prevent it from drawing
 					vm:SetMaterial("Debug/hsv")			
+				end
 			end
 		end
 		
 	end
 
-end
-
-function SWEP:PrimaryAttack()
-
-   --[[if self:Clip1() <= 0 then
-      self:EmitSound( "Weapon_Shotgun.Empty" )
-      self:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
-      return false
-   end]]
-
-	self.Weapon:SetNextSecondaryFire( CurTime() + self.Primary.Delay )
-	self.Weapon:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
-	
-		-- if ( !self:CanPrimaryAttack() ) then return end
-
-	// Play shoot sound
-	if SERVER then
-		self.Owner:EmitSound( self.Primary.Sound, PP["Weapon_Decibel"], 100, 1, CHAN_AUTO )
-	end
-	
-	// Remove 1 bullet from our clip
-	self:TakePrimaryAmmo(self.Primary.TakeAmmo) 
-	
-		// Shoot the bullet
-	self:CSShootBullet( self.Primary.Damage, self.Primary.Recoil, self.Primary.NumShots, self.Primary.Cone )
-	
-	
-	if ( self.Owner:IsNPC() ) then return end
-	// In singleplayer this function doesn't get called on the client, so we use a networked float
-	// to send the last shoot time. In multiplayer this is predicted clientside so we don't need to 
-	// send the float.
-	if ( (game.SinglePlayer() && SERVER) || CLIENT ) then
-		self.Weapon:SetNW2Float( "LastShootTime", CurTime() )
-	end
 end
 
 function SWEP:Holster()
@@ -325,7 +258,7 @@ if CLIENT then
 	SWEP.wRenderOrder = nil
 	function SWEP:DrawWorldModel()
 		
-		if (self.ShowWorldModel == nil or self.ShowWorldModel) or not IsValid(self.Owner) then
+		if (self.ShowWorldModel == nil or self.ShowWorldModel) then
 			self:DrawModel()
 		end
 		
@@ -632,285 +565,19 @@ if CLIENT then
 	end
 	
 end
-
- function SWEP:CSShootBullet( dmg, recoil, numbul, cone )
-
-	numbul 	= numbul 	or 1
-	cone 	= cone 		or 0.01
-
-	local bullet = {}
-	bullet.Num 		= numbul
-	bullet.Src 		= self.Owner:EyePos() --self.Owner:GetBonePosition( self.Owner:LookupBone("ValveBiped.Bip01_R_Hand") )			// Source
-	bullet.Dir 		= self.Owner:GetAimVector()			// Dir of bullet
-	bullet.Spread 	= Vector( cone, cone, 0 )			// Aim Cone
-	bullet.Tracer	= 1
-	bullet.TracerName = "bullettracer"
-	bullet.Force	= 5										// Amount of force to give to phys objects
-	bullet.Damage	= dmg
-	
-	self.Owner:FireBullets( bullet )
-	self.Weapon:SendWeaponAnim( ACT_VM_PRIMARYATTACK ) 		// View model animation
-	self.Owner:MuzzleFlash()								// Crappy muzzle light
-	self.Owner:SetAnimation( PLAYER_ATTACK1 )				// 3rd Person Animation
-	
-	if ( self.Owner:IsNPC() ) then return end
-	
-	// CUSTOM RECOIL !
-	if ( (game.SinglePlayer() && SERVER) || ( !game.SinglePlayer() && CLIENT && IsFirstTimePredicted() ) ) then
-	
-		local eyeang = self.Owner:EyeAngles()
-		eyeang.pitch = eyeang.pitch - recoil
-		self.Owner:SetEyeAngles( eyeang )
-	
-	end
-
-end
-
-SWEP.reloadtimer = 0
-
+  
 function SWEP:Reload()
+end
 
 
-self:SetIronsights( false )
-
-	if (Zoomed) then -- The player is not zoomed in
-	
-		Zoomed = false -- We tell the SWEP that he is not
-		if SERVER then
-			self.Owner:SetFOV( 0, 0.3 ) -- Setting to 0 resets the FOV
-		end
+function SWEP:PrimaryAttack()
+	if SERVER then
+		print(self.Owner:GetEyeTrace().Entity)
+		if ( self.Owner:GetEyeTrace().Entity:IsPlayerHolding() ) then return end
+		self.Owner:PickupObject( self.Owner:GetEyeTrace().Entity )
+		--self.Owner:SimulateGravGunPickup( self.Owner:GetEyeTrace().Entity )
 	end
-
-   --if self:GetNW2Bool( "reloading", false ) then return end
-   if self.dt.reloading then return end
-
-   if not IsFirstTimePredicted() then return end
-
-   if self:Clip1() < self.Primary.ClipSize and self.Owner:GetAmmoCount( self.Primary.Ammo ) > 0 then
-
-      if self:StartReload() then
-         return
-      end
-   end
-
 end
-
-function SWEP:StartReload()
-   --if self:GetNWBool( "reloading", false ) then
-   if self.dt.reloading then
-      return false
-   end
-
-   self:SetIronsights( false )
-
-   if not IsFirstTimePredicted() then return false end
-
-   self:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
-
-   local ply = self.Owner
-
-   if not ply or ply:GetAmmoCount(self.Primary.Ammo) <= 0 then
-      return false
-   end
-
-   local wep = self
-
-   if wep:Clip1() >= self.Primary.ClipSize then
-      return false
-   end
-
-   wep:SendWeaponAnim(ACT_SHOTGUN_RELOAD_START)
-
-   self.reloadtimer =  CurTime() + wep:SequenceDuration()
-
-   --wep:SetNWBool("reloading", true)
-   self.dt.reloading = true
-
-   return true
-end
-
-function SWEP:PerformReload()
-   local ply = self.Owner
-
-   -- prevent normal shooting in between reloads
-   self:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
-
-   if not ply or ply:GetAmmoCount(self.Primary.Ammo) <= 0 then return end
-
-   if self:Clip1() >= self.Primary.ClipSize then return end
-
-   self.Owner:RemoveAmmo( 1, self.Primary.Ammo, false )
-   self:SetClip1( self:Clip1() + 1 )
-   
-   self.Weapon:EmitSound( reload )
-
-   self:SendWeaponAnim(ACT_VM_RELOAD)
-
-   self.reloadtimer = CurTime() + self:SequenceDuration()
-end
-
-function SWEP:FinishReload()
-   self.dt.reloading = false
-   self:SendWeaponAnim(ACT_SHOTGUN_RELOAD_FINISH)
-
-   self.reloadtimer = CurTime() + self:SequenceDuration()
-   self:EmitSound( pump )
-end
-
-function SWEP:Think()
-   if self.dt.reloading and IsFirstTimePredicted() then
-      if self.Owner:KeyDown(IN_ATTACK) then
-         self:FinishReload()
-         return
-      end
-
-      if self.reloadtimer <= CurTime() then
-
-         if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then
-            self:FinishReload()
-         elseif self:Clip1() < self.Primary.ClipSize then
-            self:PerformReload()
-         else
-            self:FinishReload()
-         end
-         return
-      end
-   end
-end
-
-function SWEP:Deploy()
-self:SetIronsights( false )
-	if (Zoomed) then -- The player is not zoomed in
-	
-		Zoomed = false -- We tell the SWEP that he is not
-		if SERVER then
-			self.Owner:SetFOV( 0, 0.3 ) -- Setting to 0 resets the FOV
-		end
-	end
-   self.dt.reloading = false
-   self.reloadtimer = 0
-   return self.BaseClass.Deploy(self)
-end
-
-local IRONSIGHT_TIME = 0.25
-
-/*---------------------------------------------------------
-   Name: GetViewModelPosition
-   Desc: Allows you to re-position the view model
----------------------------------------------------------*/
-function SWEP:GetViewModelPosition( pos, ang )
-
-	if ( !self.IronSightsPos ) then return pos, ang end
-
-	local bIron = self.Weapon:GetNW2Bool( "Ironsights" )
-	
-	if ( bIron != self.bLastIron ) then
-	
-		self.bLastIron = bIron 
-		self.fIronTime = CurTime()
-		
-		if ( bIron ) then 
-			self.SwayScale 	= 0.3
-			self.BobScale 	= 0.1
-		else 
-			self.SwayScale 	= 1.0
-			self.BobScale 	= 1.0
-		end
-	
-	end
-	
-	local fIronTime = self.fIronTime or 0
-
-	if ( !bIron && fIronTime < CurTime() - IRONSIGHT_TIME ) then 
-		return pos, ang 
-	end
-	
-	local Mul = 1.0
-	
-	if ( fIronTime > CurTime() - IRONSIGHT_TIME ) then
-	
-		Mul = math.Clamp( (CurTime() - fIronTime) / IRONSIGHT_TIME, 0, 1 )
-		
-		if (!bIron) then Mul = 1 - Mul end
-	
-	end
-
-	local Offset	= self.IronSightsPos
-	
-	if ( self.IronSightsAng ) then
-	
-		ang = ang * 1
-		ang:RotateAroundAxis( ang:Right(), 		self.IronSightsAng.x * Mul )
-		ang:RotateAroundAxis( ang:Up(), 		self.IronSightsAng.y * Mul )
-		ang:RotateAroundAxis( ang:Forward(), 	self.IronSightsAng.z * Mul )
-	
-	
-	end
-	
-	local Right 	= ang:Right()
-	local Up 		= ang:Up()
-	local Forward 	= ang:Forward()
-	
-	
-
-	pos = pos + Offset.x * Right * Mul
-	pos = pos + Offset.y * Forward * Mul
-	pos = pos + Offset.z * Up * Mul
-
-	return pos, ang
-	
-end
-
-
-/*---------------------------------------------------------
-	SetIronsights
----------------------------------------------------------*/
-function SWEP:SetIronsights( b )
-
-	self.Weapon:SetNW2Bool( "Ironsights", b )
-
-end
-
-
-SWEP.NextSecondaryAttack = 0
-/*---------------------------------------------------------
-	SecondaryAttack
----------------------------------------------------------*/
+ 
 function SWEP:SecondaryAttack()
-
-	--[[if ( !self.IronSightsPos ) then return end
-	if ( self.NextSecondaryAttack > CurTime() ) then return end
-	
-	bIronsights = !self.Weapon:GetNW2Bool( "Ironsights", false )
-	
-	self:SetIronsights( bIronsights )
-	
-	self.NextSecondaryAttack = CurTime() + 0.3
-	
-	
-	if (!Zoomed) then -- The player is not zoomed in
- 
-		Zoomed = true -- Now he is
-		if SERVER then
-			self.Owner:SetFOV( 45, 0.3 ) -- SetFOV is serverside only
-		end
-	else -- If he is
- 
-		Zoomed = false -- We tell the SWEP that he is not
-		if SERVER then
-			self.Owner:SetFOV( 0, 0.3 ) -- Setting to 0 resets the FOV
-		end
-	end]]
-	
-end
-
-/*---------------------------------------------------------
-	onRestore
-	Loaded a saved game (or changelevel)
----------------------------------------------------------*/
-function SWEP:OnRestore()
-
-	self.NextSecondaryAttack = 0
-	self:SetIronsights( false )
-	
 end

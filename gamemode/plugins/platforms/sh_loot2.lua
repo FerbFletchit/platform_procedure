@@ -12,7 +12,7 @@ Platform_Manager["Structures"][Platform_Name] = { -- The platform ID.
 		{
 			"2x2x1",
 			function(Base)
-				return Base:GetPos() + Vector( -85, 81, 55)
+				return Base:GetPos() + Vector( -85, 81, 50)
 			end,
 			Angle(0,90,0),
 			Color(145,145,145),
@@ -22,7 +22,7 @@ Platform_Manager["Structures"][Platform_Name] = { -- The platform ID.
 		{
 			"2x2x1",
 			function(Base)
-				return Base:GetPos() + Vector( 87, -86, 55)
+				return Base:GetPos() + Vector( 87, -86, 50)
 			end,
 			Angle(0,90,0),
 			Color(145,145,145),
@@ -32,7 +32,7 @@ Platform_Manager["Structures"][Platform_Name] = { -- The platform ID.
 		{
 			"2x2x1",
 			function(Base)
-				return Base:GetPos() + Vector( -84, -83, 55)
+				return Base:GetPos() + Vector( -84, -83, 50)
 			end,
 			Angle(0,90,0),
 			Color(145,145,145),
@@ -42,7 +42,7 @@ Platform_Manager["Structures"][Platform_Name] = { -- The platform ID.
 		{
 			"2x2x1",
 			function(Base)
-				return Base:GetPos() + Vector( 82, 81, 55)
+				return Base:GetPos() + Vector( 82, 81, 50)
 			end,
 			Angle(0,-90,0),
 			Color(145,145,145),

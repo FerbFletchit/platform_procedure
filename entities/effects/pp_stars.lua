@@ -20,27 +20,27 @@ end
 			Stars_particle:SetLifeTime( 10000000000 )
 			Stars_particle:SetDieTime( 100000000000 )
 
-			Stars_particle:SetStartAlpha( math.random(100,150) )
-			Stars_particle:SetEndAlpha( 0 )
+			Stars_particle:SetStartAlpha( math.random(10,100) )
+			Stars_particle:SetEndAlpha( math.random(10,100) )
 
 			local Size = PP["Stars"]["Size"]()
 			Stars_particle:SetStartSize( Size )
 			Stars_particle:SetEndSize( Size )
 
-			Stars_particle:SetRoll( math.Rand( -90, 90 ) )
-			Stars_particle:SetRollDelta( math.Rand( -0.3, 0.3 ) )
+			--Stars_particle:SetRoll( math.Rand( -90, 90 ) )
+			--Stars_particle:SetRollDelta( math.Rand( -0.3, 0.3 ) )
 
 			Stars_particle:SetAirResistance( 300 )
 			Stars_particle:SetGravity( Vector( 0, 0, 0 ) )
 
 			Stars_particle:SetCollide( true )
 
-			Stars_particle:SetAngleVelocity( Angle( math.Rand( -10, 10 ), math.Rand( -10, 10 ), math.Rand( -10, 10 ) ) )
+			Stars_particle:SetAngleVelocity( Angle( 0, math.Rand( -100, 100 ), 0 ) )
 
 			Stars_particle:SetBounce( 1 )
 			Stars_particle:SetLighting( false )
 
-			local lighting = math.random(0,100)
+			local lighting = math.random(30,100)
 			Stars_particle:SetColor(lighting, lighting, lighting )
 		end
 

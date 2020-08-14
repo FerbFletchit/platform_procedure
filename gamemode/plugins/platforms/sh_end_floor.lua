@@ -40,7 +40,7 @@ Platform_Manager["Types"]["End_Floor"] = {
 				
 				if not Platform:GetNW2Bool("Activated") then
 					
-					Platform:EmitSound("pp_sound_effects/Ticking.mp3", 55, 100, 1.1, CHAN_AUTO )
+					Platform:EmitSound("pp_sound_effects/Ticking.mp3", 65, 100, 1.1, CHAN_AUTO )
 					
 					timer.Simple(1, function()
 
@@ -58,21 +58,6 @@ Platform_Manager["Types"]["End_Floor"] = {
 
 		end
 		Platform["PlayLoop"]()
-
-		for key, value in pairs( team.GetPlayers(1) ) do
-
-			if IsValid( value ) then
-				
-				local Should_Emote = math.Rand(0.1, 1)
-
-				if Should_Emote <= PP["End_Floor_ACT_Chance"] then
-					
-					value:ConCommand("act "..table.Random( PP["End_Floor_ACT"] ) )
-
-				end
-			end
-
-		end
 
 		if SERVER then
 
@@ -128,8 +113,8 @@ Platform_Manager["Types"]["End_Floor"] = {
 
 			if IsValid(Hint) then
 				Hint:SetPos(Platform:GetPos() + Vector(
-							math.random(-200,200),
-							math.random(-200,200),
+							math.random(-100,100),
+							math.random(-100,100),
 							math.random(30,60)
 					)
 				)
@@ -183,7 +168,25 @@ Platform_Manager["Types"]["End_Floor"] = {
 		
 		function Platform:Activated() -- Once all players are on the platform.
 
+			PP_RespawnAllPlayersOnPlatform( Platform )
+
+			for key, value in pairs( team.GetPlayers(1) ) do
+
+				if IsValid( value ) then
+					
+					local Should_Emote = math.Rand(0.1, 1)
+
+					if Should_Emote <= PP["End_Floor_ACT_Chance"] then
+						
+						value:ConCommand("act "..table.Random( PP["End_Floor_ACT"] ) )
+
+					end
+				end
+
+			end
+
 			PP_RemoveAllOtherPlatforms( Platform, 5 )
+			
 			PP_ClearMobs()
 
 			local Travel_Time = math.Clamp(PP["End_Platform_Time_Min"] + #team.GetPlayers(1)*PP["End_Platform_SecsPerPly"], 
@@ -228,6 +231,7 @@ Platform_Manager["Types"]["End_Floor"] = {
 			timer.Simple((Travel_Time+5), function()
 				if IsValid( self ) then
 					self["Callback"]( self )
+					PP_NextGameState()
 					self["Travel"]["pos"] = self:GetPos() + Vector(0,0,500)
 				end
 
@@ -246,10 +250,7 @@ Platform_Manager["Types"]["End_Floor"] = {
 
 		Platform["Callback"] = function( Platform ) -- What happens when we reach our destination.
 			
-			PP_RespawnAllPlayersOnPlatform( Platform )
-			
 			table.insert( Platform_Manager["Platforms"], Platform ) -- Ensure this is the last platform in the table.
-			PP_NextGameState()
 
 			if IsValid( Platform["UpArrow"] ) then
 				Platform["UpArrow"]:EmitSound( "pp_sound_effects/Ding.mp3", 75, 100, 1, CHAN_AUTO )
@@ -307,7 +308,6 @@ Platform_Manager["Types"]["End_Floor"] = {
 				    local Display_Text2 = self:GetNW2Int("Activators") .. " / "..math.Round(#team.GetPlayers(1) * PP["TransportPercentage"] )-- This will be used for harvest display.
 
 			        PP_DrawShadowedTxt(Display_Text,"PP_Regular",2,2,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,PP["Color_Pallete"]["White"])
-			        --PP_DrawShadowedTxt(Display_Text2,"PP_Regular",2,100,TEXT_ALIGN_CENTER,TEXT_ALIGN_BOTTOM,PP["Color_Pallete"]["White"])
 
 			    cam.End3D2D()
 

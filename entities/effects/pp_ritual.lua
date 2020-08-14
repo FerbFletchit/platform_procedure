@@ -8,7 +8,7 @@ function EFFECT:Init( data )
 
 	local Ritual_NumParticles = 1
 
-	local Ritual_emitter = ParticleEmitter( Ritual_vOffset, true )
+	local Ritual_emitter = ParticleEmitter( Ritual_vOffset, false )
 	local Ritual_particle = Material("materials/pp_assets/particle_".."ritual"..math.random(1,7)..".png")
 
 	for i = 0, Ritual_NumParticles do
@@ -30,7 +30,7 @@ function EFFECT:Init( data )
 			Ritual_particle:SetStartSize( Size )
 			Ritual_particle:SetEndSize( Size/2 )
 
-			Ritual_particle:SetRoll( math.Rand( -90, 90 ) )
+			Ritual_particle:SetRoll( math.Rand( -1, 1 ) )
 			Ritual_particle:SetRollDelta( math.Rand( -0.3, 0.3 ) )
 
 			Ritual_particle:SetAirResistance( 300 )
@@ -38,10 +38,10 @@ function EFFECT:Init( data )
 
 			Ritual_particle:SetCollide( true )
 
-			Ritual_particle:SetAngleVelocity( Angle( math.Rand( -10, 10 ), math.Rand( -10, 10 ), math.Rand( -10, 10 ) ) )
+			Ritual_particle:SetAngleVelocity( Angle( math.Rand( -1, 1 ), math.Rand( -1, 1 ), math.Rand( -1, 1 ) ) )
 
 			Ritual_particle:SetBounce( 1 )
-			Ritual_particle:SetLighting( true )
+			Ritual_particle:SetLighting( false )
 
 			local lighting = math.random(100,200)
 			Ritual_particle:SetColor(lighting, lighting, lighting )

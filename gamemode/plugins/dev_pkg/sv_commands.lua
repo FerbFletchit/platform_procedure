@@ -1,5 +1,27 @@
 -- Developer Commands
 
+hook.Add("PlayerSay", "PP_Commands", function( ply, text )
+	if string.lower(text) == "!commands" then
+		if ply:IsAdmin() then
+			ply:SendNotification("Game", "!newgame - Starts the game over.")
+			ply:SendNotification("Game", "!endgame - Takes players to the endscreen, restarting the game.")
+		end
+		return ""
+	elseif string.lower(text) == "!newgame" then
+		ply:ConCommand("pp_new_game")
+		return ""
+	elseif string.lower(text) == "!endgame" then
+		ply:ConCommand("pp_end_game")
+		return ""
+	end
+end)
+
+concommand.Add("pp_weapon", function(ply, cmd, args)
+	if ply:IsAdmin() then
+		ply:AddInventoryItem(args[1], "models/error.mdl", PP["Ingots"][1]["Color"], "models/shiny")
+	end
+end )
+
 concommand.Add("pp_new_game", function( ply )
 	if ply:IsAdmin() then
 		PP_NewGame()
