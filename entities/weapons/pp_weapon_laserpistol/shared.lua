@@ -94,7 +94,7 @@ SWEP.IronSightsAng      = Vector( 2, -1, 0 )
 SWEP.Primary.Sound = Sound( "pp_weapons/lasgun.wav" )
 
 function SWEP:Initialize()
-	timer.Simple(0.1, function()
+	timer.Simple(0.01, function()
 
 		if not IsValid(self.Weapon) or not IsValid(self) then return end
 

@@ -72,7 +72,7 @@ SWEP.Primary.Recoil			= PP["Weapon_Recoil"]
 SWEP.Primary.Damage			= PP["Rifle_Base_Damage"] - 5
 SWEP.Primary.Delay = PP["Rifle_Base_Firerate"]
 SWEP.Primary.NumShots		= 10
-SWEP.Primary.Cone			= 0.6
+SWEP.Primary.Cone			= 0.3
 SWEP.Primary.ClipSize = -1
 SWEP.Primary.ClipMax = -1
 SWEP.Primary.DefaultClip = -1
@@ -94,7 +94,7 @@ SWEP.IronSightsAng      = Vector( 4, -0.5, 2 )
 SWEP.Primary.Sound = Sound( "pp_weapons/meltafire.mp3" )
 
 function SWEP:Initialize()
-	timer.Simple(0.1, function()
+	timer.Simple(0.01, function()
 
 		--if not IsValid(self.Weapon) or not IsValid(self) then return end
 

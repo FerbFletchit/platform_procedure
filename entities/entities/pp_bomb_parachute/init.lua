@@ -4,14 +4,11 @@ AddCSLuaFile( "shared.lua" )
 include('shared.lua')
 
 function ENT:Initialize()
-	
 	self:SetModel( "models/aceofspades/gameplay_objects/normal_parachutebigger.mdl" )
 
-	--self:SetMaterial( "models/shiny" or PP["Default_Material"] )
 	self:SetUseType(SIMPLE_USE)
 
 	self:SetModelScale(1)
-	
 	
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:PhysicsInit(SOLID_VPHYSICS)
@@ -19,9 +16,6 @@ function ENT:Initialize()
     self:SetSolid(SOLID_VPHYSICS)
 
     self:SetAngles(Angle(0,45*math.random(1,6),0))
-
-    --self:SetCollisionGroup(COLLISION_GROUP_IN_VEHICLE)
-
 
 	self:PhysWake()
 
@@ -117,7 +111,7 @@ function ENT:Initialize()
 	end
 
 	function Bomb:Plode()
-		PP_ActionEffect(self, "pp_impact", 3)
+		PP_ActionEffect(self, "pp_explode", 1)
 		self:EmitSound("ambient/explosions/explode_" .. math.random(1, 9) .. ".wav")
 
 		for key, value in pairs(ents.FindInSphere(self:GetPos(),300)) do
