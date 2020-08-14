@@ -60,13 +60,9 @@ net.Receive("PP_Workbench_BlockChoice", function(len, ply)
 	CubeLayout["Frame"]:ShowCloseButton(false)
 	CubeLayout["Frame"]:SetDraggable(false)				-- Makes it so you carnt drag it
 	CubeLayout["Frame"]:MakePopup()						-- Makes it so you can move your mouse on it
-
-	local Arrow_Size = 100
-	local Arrow_Mat = Material("materials/pp_assets/up_arrow.png")
+	
 	CubeLayout["Frame"].Paint = function(w,h)
-		surface.SetDrawColor( 0, 0, 0, 130 )
-		surface.SetMaterial( Arrow_Mat ) -- If you use Material, cache it!
-		surface.DrawTexturedRectRotatedPoint( ScrW()/2.5, ScrH()/2, Arrow_Size*0.68, Arrow_Size, -90, 0, 0 )
+
 	end
 
 	CubeLayout["Frame"].OnClose = function()
@@ -123,6 +119,7 @@ net.Receive("PP_Workbench_BlockChoice", function(len, ply)
 		Cube_Panel_Model:SetSize( Cube_Panel:GetWide(), Cube_Panel:GetTall() )
 		Cube_Panel_Model:SetModel( value["Model"] )
 		Cube_Panel_Model:SetAnimated( false )
+
 	
 		Cube_Panel_Model.Entity:SetMaterial( value["Material"] )
 		Cube_Panel_Model:SetColor( value["Color"] )
@@ -193,14 +190,13 @@ net.Receive("PP_Workbench_BlockChoice", function(len, ply)
 	end
 
 	CubeLayout["Receiver"] = vgui.Create( "DPanel", CubeLayout["Frame"] )
-	CubeLayout["Receiver"]:SetSize( ScreenScale(45), ScreenScale(45) )
+	CubeLayout["Receiver"]:SetSize( ScreenScale(32), ScreenScale(32) )
 	CubeLayout["Receiver"]:Center()
 	CubeLayout["Receiver"]:Receiver( "BlockDrop", BlockDrop )
 
 	local WB_Receiver = CubeLayout["Receiver"]
 	function WB_Receiver:Paint(w,h)
 		draw.RoundedBox(0,0,0,w,h,PP["Color_Pallete"]["WorkBench_Dark"])
-		draw.RoundedBox(0,5,5,w-10,h-10,PP["Color_Pallete"]["WorkBench_Dark"])
 	end
 
 end )

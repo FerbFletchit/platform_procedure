@@ -36,9 +36,10 @@ function ENT:Think()
 end
 
 function ENT:PhysicsCollide(data, physobj)
-	PP_ActionEffect(self, "pp_acidimpact", 1)
-	
-	--util.Decal("BeerSplash", data.HitPos +data.HitNormal, data.HitPos -data.HitNormal)
+	local effectdata = EffectData()
+	effectdata:SetOrigin(self:GetPos())
+	util.Effect("impact_splat", effectdata)
+	util.Decal("BeerSplash", data.HitPos +data.HitNormal, data.HitPos -data.HitNormal)
 	local ent = data.HitEntity
 	if IsValid(ent) && (ent:IsPlayer() || ent:IsNPC()) then
 

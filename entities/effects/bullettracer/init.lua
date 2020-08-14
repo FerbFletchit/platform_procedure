@@ -1,5 +1,5 @@
 
-EFFECT.Mat = Material( "pp_assets/particle_chest1.png" )
+EFFECT.Mat = Material( "effects/spark" )
 
 --[[---------------------------------------------------------
 	Init( data table )

@@ -132,7 +132,7 @@ function PP_NPCSpawn( pos, class, Enemy_NPC_Level_choice )
 		return 
 	end
 
-	if #ents.FindByClass("pp_enemy_*") >= PP["Max_Enemies"] then
+	if #ents.FindByClass("pp_enemy_") >= PP["Max_Enemies"] then
 		return
 	end
 

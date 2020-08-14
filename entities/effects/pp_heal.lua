@@ -8,7 +8,7 @@ function EFFECT:Init( data )
 
 	local Heal_NumParticles = 6
 
-	local Heal_emitter = ParticleEmitter( Heal_vOffset, false )
+	local Heal_emitter = ParticleEmitter( Heal_vOffset, true )
 	local Heal_particle = Material("materials/pp_assets/particle_".."heal"..math.random(1,3)..".png")
 
 	for i = 0, Heal_NumParticles do

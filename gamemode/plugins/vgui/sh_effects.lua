@@ -1,13 +1,5 @@
 PP_Effects = {
 
-	["defusal"] = {
-		["Rate"] = 1, -- Seconds.
-	},
-
-	["pp_acidimpact"] = {
-		["Rate"] = 0.1, -- Seconds.
-	},
-
 	["ritual"] = {
 		["Rate"] = 0.1, -- Seconds.
 	},
@@ -81,7 +73,7 @@ function AddEffectBlock(ent, effect)
 end
 
 function PauseEffects(ent)
-	if IsValid(ent) and not table.IsEmpty(ent:GetChildren()) then
+	if IsValid(ent) and ent:GetChildren() then
 		for key, value in pairs(ent:GetChildren()) do
 			if value:GetClass() == "pp_effect_emitter" then
 				value:SetEnabled(false)
@@ -91,7 +83,7 @@ function PauseEffects(ent)
 end
 
 function ResumeEffects(ent)
-	if IsValid(ent) and not table.IsEmpty(ent:GetChildren()) then
+	if IsValid(ent) and IsValid(ent:GetChildren()) then
 		for key, value in pairs(ent:GetChildren()) do
 			if value:GetClass() == "pp_effect_emitter" then
 				value:SetEnabled(true)

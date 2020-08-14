@@ -65,7 +65,7 @@ SWEP.WElements = {
 }
 
 function SWEP:Initialize()
-	timer.Simple(0.01, function()
+	timer.Simple(0.1, function()
 		if not IsValid(self.Weapon) or not IsValid(self) then return end
 		nextshottime = CurTime()
 		self:SetHoldType(self.HoldType)
