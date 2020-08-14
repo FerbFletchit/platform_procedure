@@ -26,7 +26,7 @@ function PP_HealthElement()
 			draw.RoundedBox(0,PP_Ply_HealthBar["Pos"][1]+5,PP_Ply_HealthBar["Pos"][2] - PP_InvBox_Size,PP_InvBox_Size-10,PP_InvBox_Size-10,PP["Color_Pallete"]["Dark"])
 		end
 		
-		draw.SimpleText(string.upper(input.GetKeyName( PP["Inventory_Key"] )),"PP_Small",PP_Ply_HealthBar["Pos"][1]+PP_InvBox_Size/2,PP_Ply_HealthBar["Pos"][2]-PP_InvBox_Size/2-5,PP["Color_Pallete"]["White"],TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+		draw.SimpleText("Q","PP_Small",PP_Ply_HealthBar["Pos"][1]+PP_InvBox_Size/2,PP_Ply_HealthBar["Pos"][2]-PP_InvBox_Size/2-5,PP["Color_Pallete"]["White"],TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 		
 		draw.RoundedBox(0,PP_Ply_HealthBar["Pos"][1],PP_Ply_HealthBar["Pos"][2],PP_Ply_HealthBar["Width"] ,PP_Ply_HealthBar["Height"],PP["Color_Pallete"]["Dark"])
 		
@@ -44,6 +44,17 @@ local Crosshair_Size_W = 44
 local Crosshair_Size_H = Crosshair_Size_W * 0.4
 local Crosshair_Position_X, Crosshair_Position_Y = (ScrW() / 2) - (32), (ScrH() / 2) - (32)
 
+function surface.DrawTexturedRectRotatedPoint( x, y, w, h, rot, x0, y0 )
+	
+	local c = math.cos( math.rad( rot ) )
+	local s = math.sin( math.rad( rot ) )
+	
+	local newx = y0 * s - x0 * c
+	local newy = y0 * c + x0 * s
+	
+	surface.DrawTexturedRectRotated( x + newx, y + newy, w, h, rot )
+	
+end
 hook.Remove("MenuDrawLuaErrors")
 
 function PP_Crosshair()

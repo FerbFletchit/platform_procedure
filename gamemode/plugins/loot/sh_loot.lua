@@ -117,8 +117,8 @@ function PP_Loot_Spawn( Platform )
 					Loot:SetParent(Platform)
 
 					Loot:Spawn()
-					local ang = Platform:GetAngles()
-					Loot:SetAngles( Angle(-ang.x,90*math.random(0,4), -ang.z) ) -- Points random direction with 90degree snapping.
+					
+					Loot:SetAngles( Angle(0,90*math.random(0,4), 0) ) -- Points random direction with 90degree snapping.
 						
 				end			
 			end

@@ -22,8 +22,9 @@ function PP_formatPoints(n) -- from darkrp :)
 end
 
 net.Receive("PP_EndMenu", function(len, ply)
-	
 	local GameWin = net.ReadBool()
+
+	local GameWin = tobool(math.random(0,1))
 
 	PP_EndScreen["Size"] = {ScrW()*0.25, ScrH()*0.25}
 	

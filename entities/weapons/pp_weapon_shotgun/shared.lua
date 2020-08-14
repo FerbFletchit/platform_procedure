@@ -109,7 +109,7 @@ function SWEP:Initialize()
 
 	// other initialize code goes here
 
-	timer.Simple(0.01, function()
+	timer.Simple(0.1, function()
 		if not IsValid(self.Weapon) or not IsValid(self) then return end
 
 		local Qual = PP_GetIngotByColor(self:GetColor())[2]["Swep_Multiplier"] or PP["Ingots"][1]["Swep_Multiplier"]

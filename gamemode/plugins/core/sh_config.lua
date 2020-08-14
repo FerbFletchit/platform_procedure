@@ -1,8 +1,6 @@
 if PP then return end
 PP = {}
 
-PP["Version"] = "1.1.0"
-
 PP["StateManager"] = {
 	["States"] = {}	
 }
@@ -16,8 +14,7 @@ PP["DamageBlacklist"] = {
 	"pp_recipe",
 	"pp_loot_cube",
 	"pp_structure_block",
-	"pp_workbench",
-	"pp_ent_component"
+	"pp_workbench"
 }
 
 PP["End_Floor_ACT_Chance"] = 0.4
@@ -65,7 +62,7 @@ PP["Floors"] = {
 PP["Server_Commands"] = {
 	["sv_gravity"] = 300,
 	["sv_accelerate"] = 10,
-	["sv_airaccelerate"] = 1000,
+	["sv_airaccelerate"] = 100,
 	["sv_friction"] = 15,
 
 	["sv_tickrate"] = 60,
@@ -76,13 +73,12 @@ PP["Server_Commands"] = {
 
 	["decalfrequency"] = 1, -- Not sure what unit this is in.
 	
-	["sv_autojump"] = 0,
+	["sv_autojump"] = 1,
 	["sv_show_crosshair_target"] = 0,
 
 	["sv_crazyphysics_defuse"] = 0,
 	["sv_crazyphysics_remove"] = 0,
 	["sv_crazyphysics_warning"] = 0,
-	["sv_sticktoground"] = 0,
 }
 
 PP["Start_Dialouge"] = { -- What the player says at the beginning of a new game
@@ -105,7 +101,7 @@ PP["Ritual_HP_Cost"] = 50 -- This keeps adding up.
 
 PP["Spawn_MinVolume"] = 15000
 
-PP["Dialouge_Overhead_Length"] = 5
+PP["Dialouge_Overhead_Length"] = 4
 PP["Parachute_RemoveTime"] = 30
 
 PP["Max_Health"] = 250 -- How much health players start with.
@@ -121,14 +117,11 @@ PP["Enemy_MaxPerPlatform"] = 1
 -- KEY CONFIGURATION --
 
 PP["Inventory_Key"] = KEY_Q
-
-PP["Fist_Key"] = KEY_F
-
 PP["Weapon_Slots"] = {
 	[1] = {"Primary", KEY_1},
 	[2] = {"Secondary", KEY_2},
 	[3] = {"Gear", KEY_3},
-	[4] = {"Special", KEY_4}
+	[4] = {"Special", KEY_F}
 }
 
 -- INTERGRAL MAP CONFIG --
@@ -160,25 +153,17 @@ PP["Win_Zone"] = {
 -- COLORS --
 
 PP["Color_Pallete"] = {
-	
 	["Main"] = Color(255,255,255,255),
-	
 	["Secondary"] = Color(255,255,255,255),
-	
 	["Dark_Lightish"] = Color(0,0,0,100),
-	
 	["Dark_Light"] = Color(0,0,0,65),
-	
 	["Dark"] = Color(0,0,0,130),
-	
 	["White"] = Color(255,255,255,255),
 
-	["Floor_Indicator"] = Color(0,0,0,200),
+	["Floor_Indicator"] = Color(90,90,90,200),
 
 	["Tower_Health"] = Color(102, 0, 204, 200),
-	
 	["Craft_Recipe_Block"] = Color(112, 0, 214, 210),
-	
 	["Bomb_Bar"] = Color(204, 51, 0, 200),
 
 	["ViewModelArms"] = Color(255, 203, 164),
@@ -188,11 +173,9 @@ PP["Color_Pallete"] = {
 	["Inv_Selected"] = Color(212,175,55, 130),
 
 	["Grass"] = Color(31, 86, 13),
-	
 	["Dirt"] = Color(155,118,83),
 
 	["NPC_Low_Health"] = Color(255,0,0,130),
-	
 	["NPC_BOSS_Health"] = Color(138,3,3,200),
 
 	["Recipe"] = Color(0,0,255),
@@ -204,43 +187,28 @@ PP["Color_Pallete"] = {
 	["Inventory_Selected"] = Color(255, 223, 127, 130),
 
 	["Chest_Inside"] = Color(28,16,2,255),
-	
 	["WorkBench_Darkish"] = Color(0,0,0,70),
-	
 	["WorkBench_Dark"] = Color(0,0,0,130),
-	
 	["Overhead_Box"] = Color(0,0,0,130),
-	
 	["Overhead_Text"] = Color(255, 255, 255, 255),
 
 	["Dialouge_Box"] = Color(0, 0, 0, 130),
-	
 	["Dialouge_Text"] = Color(255, 255, 255, 255),
 
 	["Neutral"] = Color(255,255,255,255),
-	
 	["Danger"] = Color(255,0,0,255),
-	
 	["Negative"] = Color(255,255,255,255),
-	
 	["Positive"] = Color(255,255,255,255),
-	
 	["Health"] = Color( 138,3,3,200 ),
 
 	["First Place"] = Color( 255, 223, 127 ),
-	
 	["Second Place"] = Color( 128, 128, 128 ),
-	
 	["Third Place"] = Color( 160, 82, 45 ),
 
 	["Bronze"] = Color(205, 127, 50),
-	
 	["Iron"] = Color( 60, 60, 60 ),
-	
 	["Gold"] = Color(212,175,55),
-	
 	["Diamond"] = Color(17, 141, 163 ),
-
 }
 
 PP["Block_Themes"] = {
@@ -275,14 +243,16 @@ PP["Weapon_Material"] = "models/shiny"
 PP["NPC_Material"] = "models/debug/debugwhite"
 
 -- RECIPES --
+
 PP["Recipe_Model"] = "models/aceofspades/objectives/biggerblueintel.mdl"
 PP["Recipe_Book_Model"] = "models/props_lab/bindergreenlabel.mdl"
 
 -- INVENTORY --
+
 PP["Max_Inventory"] = 25
 PP["Full_Inventory_Lines"] = {"I can't hold anymore!", "My inventory is full!", "I have no more space left!"}
 PP["Default_Inv_FOV"] = 25
-PP["Inventory_Row_x"] = 5
+PP["Inventory_Row_x"] = 4
 
 -- PLATFORM CONFIGURATION --
 PP["Decay_Delay"] = 30 -- Delay before a platform begins to decay by trigger of a next platform, higher number is easier for players. 
@@ -296,7 +266,7 @@ PP["End_Platform_Decay"] = 20 -- How long for the end platform to decay.
 
 PP["Land_Piece_Next"] = 5 -- How long until they spawn the next one (This doesn't activate when they're made as surrounding chunks)
 
-PP["Time_Per_Special"] = 30 -- Time per special platforms (That aren't event controlled)
+PP["Time_Per_Special"] = 45 -- Time per special platforms (That aren't event controlled)
 
 -- For random land piece chunk generation around things.
 PP["Land_Piece_Amount"] = function() return math.random(2,4) end
@@ -445,14 +415,8 @@ PP["Soundtrack"] = {
 }
 
 
-PP["HintChance"] = 0.10
+PP["HintChance"] = 0.05
 PP["Hints"] = {
-
-	"Hold [E] as chests open to catch more loot!",
-
-	"Press [F] to equip fists!",
-
-	"Holding shift allows you to vault platforms!",
 
 	"Recipe patterns are randomly generated each round, pick them up from chests or loot chutes and check them out at the workbench!",
 

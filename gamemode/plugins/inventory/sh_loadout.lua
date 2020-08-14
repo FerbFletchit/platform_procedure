@@ -46,7 +46,7 @@ function Player:GivePPWeapon( weapon_table )
 	local Ingot_Quality = PP_GetIngotByColor( weapon_table["Color"] )
 	Ingot_Quality = Ingot_Quality[2]
 
-	if table.IsEmpty( Ingot_Quality ) and weapon_table["Class"] then 
+	if table.IsEmpty( Ingot_Quality ) then 
 		print("Failed to equip weapon with non-existent ingot quality.")
 	return end
 
@@ -75,30 +75,16 @@ end
 
 if CLIENT then
 	hook.Add( "PlayerButtonDown", "PP_WeaponSelectByButton", function( ply, button )
-		
 		local Weapon_Type = PP_WeaponSlotNumeration[button]
-		
 		if PP_WeaponSlotNumeration[button] and Weapon_Type then
-
 			net.Start("PP_WeaponSelect")
 				net.WriteString(Weapon_Type)
 			net.SendToServer()
-
-		elseif button == PP["Fist_Key"] then
-
-			if not IsValid(ply:GetActiveWeapon()) or ply:GetActiveWeapon() != "pp_fists" then
-
-				net.Start("PP_FistEquip")
-				net.SendToServer()
-
-			end
-			
 		end
 	end)
 end
 
 if SERVER then
-	util.AddNetworkString("PP_FistEquip")
 	util.AddNetworkString("PP_EquipWeapon")
 	util.AddNetworkString("PP_UnEquipWeapon")
 	util.AddNetworkString("PP_WeaponSelect")
@@ -130,29 +116,6 @@ if SERVER then
 		net.Send(ply)
 	end
 
-	net.Receive("PP_FistEquip", function(len, ply)
-		ply.FistEquip = ply.FistEquip or CurTime()
-		if CurTime() > ply.FistEquip then
-			if IsValid(ply:GetActiveWeapon()) and ply:GetActiveWeapon():GetClass() == "pp_fists" then
-				
-				ply:StripWeapon( "pp_fists" )
-				
-				if not table.IsEmpty(ply:GetWeapons()) then
-
-					ply:SelectWeapon(ply:GetWeapons()[1])
-
-				end
-
-			else
-
-				ply:Give("pp_fists")
-				ply:SelectWeapon("pp_fists")
-
-			end
-			ply.FistEquip = CurTime() + 3
-		end
-	end )
-
 	net.Receive("PP_WeaponSelect", function(len, ply)
 		ply["Weapon_Table"] = ply["Weapon_Table"] or {}
 		
@@ -163,11 +126,7 @@ if SERVER then
 			local Weapon_To_SwitchTo = ply["Weapon_Table"][Weapon_Type]["Class"]
 
 			if ply:HasWeapon( Weapon_To_SwitchTo ) then
-				if IsValid(ply:GetActiveWeapon()) then
-					if Weapon_To_SwitchTo != ply:GetActiveWeapon():GetClass() then
-						ply:SelectWeapon(ply["Weapon_Table"][Weapon_Type]["Class"] )
-					end
-				else
+				if Weapon_To_SwitchTo != ply:GetActiveWeapon():GetClass() then
 					ply:SelectWeapon(ply["Weapon_Table"][Weapon_Type]["Class"] )
 				end
 			end
@@ -261,9 +220,6 @@ end
 function GM:PlayerCanPickupWeapon( ply, weapon ) -- Dissalows automatic weapon pickup.
 	
 	if not IsValid(weapon) then return end
-
-	if weapon:GetClass() == "pp_fists" then return true end
-	
 	if weapon:GetNW2Bool("Dropped") then return end -- this is pp_chest shared.lua
 	if ply:GetNW2Bool("PP_CantPickupWeapon") then return end
 

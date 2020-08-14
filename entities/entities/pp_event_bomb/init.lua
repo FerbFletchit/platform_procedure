@@ -28,8 +28,7 @@ function ENT:Initialize()
 		PhysicsObject:EnableGravity( false )
 	end
 
-	AddEffectBlock(self, "defusal")
-	PauseEffects(self)
+	AddEffectBlock(self, "generic")
 
 	self["Bomb"] = ents.Create("prop_dynamic")
 	if IsValid( self["Bomb"] ) then
@@ -38,6 +37,7 @@ function ENT:Initialize()
 		self["Bomb"]:SetParent(self)
 		self["Bomb"]:SetCollisionGroup(COLLISION_GROUP_NONE)
 		self["Bomb"]:Spawn()
+
 		--function self["Bomb"]:Use()
 			--print("bomb use")
 		--end
@@ -94,8 +94,6 @@ function ENT:BombStartDefusing( ply )
 	self["Start_Defusing"] = CurTime()
 	ply:SendNotification("Dialouge", "Defusing!")
 
-	ResumeEffects(self)
-
 	if IsValid( ply ) and ply:IsPlayer() then
 		ply:StripWeapons()
 		self:SetNW2String("Bomb_Defuser", ply:Nick() or "???" )
@@ -115,10 +113,6 @@ function ENT:BombDefused( ply )
 
 	if IsValid( self["Ply_Defusing"] ) then
 		self["Ply_Defusing"]:RestoreWeapons()
-	end
-
-	if IsValid(self) then
-		PauseEffects(self)
 	end
 
 	SetGlobalBool("PP_OngoingEvent", false)
@@ -178,10 +172,6 @@ function ENT:Think()
 			self["Ply_Defusing"]:RestoreWeapons()
 			self["Ply_Defusing"]:SendNotification("Dialouge", "I've stopped defusing.")
 			self["Ply_Defusing"] = nil
-
-			if IsValid(self) then
-				PauseEffects(self)
-			end
 
 		elseif PP["Bomb_TimeToDefuse"] - (CurTime() - self["Start_Defusing"]) <= 0 then
 			self:BombDefused( self["Ply_Defusing"] )

@@ -10,7 +10,7 @@ function EFFECT:Init( data )
 	end
 	local Fire_NumParticles = 50
 
-	local Fire_emitter = ParticleEmitter( Fire_vOffset(), false )
+	local Fire_emitter = ParticleEmitter( Fire_vOffset(), true )
 	local Fire_particle = Material("materials/pp_assets/particle_".."fire"..math.random(1,2)..".png")
 
 	for i = 0, Fire_NumParticles do
@@ -26,11 +26,10 @@ function EFFECT:Init( data )
 			Fire_particle:SetDieTime( 10 )
 
 			Fire_particle:SetStartAlpha( 255 )
-			Fire_particle:SetEndAlpha( 200 )
+			Fire_particle:SetEndAlpha( 100 )
 
-			local size = math.random(15,25)
-			Fire_particle:SetStartSize( size )
-			Fire_particle:SetEndSize( size/2 )
+			Fire_particle:SetStartSize( math.random(15,25) )
+			Fire_particle:SetEndSize( 1 )
 
 			Fire_particle:SetRoll( 0 )
 			Fire_particle:SetRollDelta( math.random(1,50) )

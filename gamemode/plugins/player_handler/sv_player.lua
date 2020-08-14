@@ -23,21 +23,10 @@ function GM:PlayerInitialSpawn( ply )
 		timer.Simple(5, function()
 			if IsValid( ply ) then
 				ply:SendNotification("Game_Entered", "A Phineas and Ferb Production")
-				ply:SendNotification("Game", "Beta Version "..PP["Version"])
 			end
 		end )
-
-		if ply:SteamID() == "STEAM_0:0:37777828" then
-
-			BroadcastNotification("Creator of the game has joined!", "Game")
-			
-			PP_BroadcastSound("PP_Sound_effects/rare.mp3", 0.7)
-
-		else
 		
-			BroadcastNotification(tostring(ply:Nick().." has joined the game!"),"Game")
-
-		end
+		BroadcastNotification(tostring(ply:Nick().." has joined the game!"),"Game")
 
 		ply:SetShouldServerRagdoll( false )
 				

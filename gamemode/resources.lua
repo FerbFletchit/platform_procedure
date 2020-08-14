@@ -10,7 +10,7 @@ function PP_AddGameContent( path )
 end
 
 
-resource.AddWorkshop( "2183728122" ) -- Platform Procedure addon.
+resource.AddWorkshop( "2179698529" ) -- Platform Procedure addon.
 resource.AddWorkshop( "235373337" ) -- Ace of spades models.
 resource.AddWorkshop( "1516718459" ) -- Half-life models :/
 resource.AddWorkshop( "1696595790" ) -- Grappling hook.
