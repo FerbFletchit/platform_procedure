@@ -9,7 +9,7 @@ function EFFECT:Init( data )
 
 	local Teleport_NumParticles = 6
 
-	local Teleport_emitter = ParticleEmitter( Teleport_vOffset, true )
+	local Teleport_emitter = ParticleEmitter( Teleport_vOffset, false )
 	local Teleport_particle = Material("materials/pp_assets/particle_".."teleport"..math.random(1,2)..".png")
 
 	for i = 0, Teleport_NumParticles do

@@ -1,5 +1,5 @@
 
-EFFECT.Mat = Material( "effects/tool_tracer" )
+EFFECT.Mat = Material( "pp_assets/particle_chest1.png" )
 
 --[[---------------------------------------------------------
    Init( data table )

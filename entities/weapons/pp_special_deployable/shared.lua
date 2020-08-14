@@ -89,7 +89,7 @@ SWEP.IronSightsPos = Vector (-5.65, -0, 1)
 SWEP.IronSightsAng = Vector (-2, -1, 1.5)
 
 function SWEP:Initialize()
-	timer.Simple(0.1, function()
+	timer.Simple(0.01, function()
 
 		if not IsValid(self.Weapon) or not IsValid(self) then return end
 

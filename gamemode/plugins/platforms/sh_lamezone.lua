@@ -8,7 +8,7 @@ Platform_Manager["Types"]["Lame_Zone"] = {
 	
 	["Decay"] = 20, -- Decay Time.
 	
-	["Loot"] = false,
+	["Loot"] = true,
 
 	["Delete_Last"] = true, -- Should the platform delete the last one.
 	["Auto_Spawn_Next"] = true, -- Should it automaticall spawn the next one after time.
@@ -17,34 +17,6 @@ Platform_Manager["Types"]["Lame_Zone"] = {
 	[1] = function( Platform ) -- Everything controlled here.
 		Platform["Info"] = Platform["Info"] or {}
 		Platform["Info"]["Reached_Destination"] = true -- If set to true, the platform won't activate on arrival. Risky to do that.
-				
-		--[[Platform["Events"] = {
-			
-			["pp_event_tower"] = {
-
-				["Angles"] = function() return Angle(0,0,90) end,
-
-				["Pos"] = function() return Platform:GetPos()+Platform:GetAngles():Up()*480 end
-
-			},
-
-			["pp_event_beacon"] = {
-
-				["Angles"] = function() return Angle(0,-90,0) end,
-
-				["Pos"] = function() return Platform:GetPos()-Platform:GetAngles():Right()*160-Platform:GetAngles():Forward()*240+Platform:GetAngles():Up()*56 end
-				
-			},
-
-			["pp_event_bomb"] = {
-
-				["Angles"] = function() return Angle(0,0,0) end,
-
-				["Pos"] = function() return Platform:GetPos()-Platform:GetAngles():Right()*900-Platform:GetAngles():Forward()*160+Platform:GetAngles():Up()*110 end
-				
-			},
-			
-		}]]
 
 		--------------------------------------------------------------------------------------
 		-- Timing fail-safe.
@@ -98,11 +70,11 @@ Platform_Manager["Types"]["Lame_Zone"] = {
 					
 					if IsValid( Platform["Trampoline"] ) then
 						
-						Platform["Trampoline"]:SetPos(Platform:GetPos()+Platform:GetUp()*96-Platform:GetRight()*50)
+						Platform["Trampoline"]:SetPos(Platform:GetPos()+Platform:GetUp()*99-Platform:GetRight()*50)
 						
 						local angy = Platform:GetAngles()
 
-						Platform["Trampoline"]:SetAngles( Angle(0,0,0) )
+						Platform["Trampoline"]:SetAngles( Angle(-angy,-angy,-angy) )
 						
 						Platform["Trampoline"]:SetParent( Platform )
 						Platform["Trampoline"]:Spawn()
@@ -129,7 +101,7 @@ Platform_Manager["Types"]["Lame_Zone"] = {
 						
 						local angy = Platform:GetAngles()
 
-						Platform["WB"]:SetAngles( Angle(0,0,0) )
+						Platform["WB"]:SetAngles( Angle(-angy,-angy,-angy) )
 						
 						Platform["WB"]:SetParent( Platform )
 						Platform["WB"]:Spawn()

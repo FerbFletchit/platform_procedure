@@ -1,5 +1,5 @@
 
-EFFECT.Mat = Material( "effects/laser_tracer" )
+EFFECT.Mat = Material( "pp_assets/particle_chest1.png" )
 
 --[[---------------------------------------------------------
    Init( data table )
@@ -77,6 +77,9 @@ function EFFECT:Render()
 	local norm = (self.StartPos - self.EndPos) * self.Life
 
 	self.Length = norm:Length()
+
+	--local box_Size = Vector(1,1,1)
+	--render.DrawBox( self.StartPos - norm, Angle( 0,0,0 ), -box_Size, box_Size, Color( 255, 255, 255 ) )
 	
 	for i = 1, 3 do
 		
